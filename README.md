@@ -24,8 +24,6 @@
     ·
     <a href="https://plane-scape-fs.onrender.com/api/documents/swagger">Backend Swagger</a>
     ·
-    <a href="https://plane-scape-fs.onrender.com/api/documents/redoc">Backend Redoc</a>
-    ·
     <a href="https://github.com/ibrsec/plane-scape-fs/issues">Report Bug</a>
     ·
     <a href="https://github.com/ibrsec/plane-scape-fs/issues">Request Feature</a>
