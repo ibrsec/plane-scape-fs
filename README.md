@@ -96,19 +96,48 @@
 📦 A Fullstack Plane Scape Project</br>
 🏀 [Frontend Live](https://plane-scape-fs.onrender.com/) || [Backend Swagger](https://plane-scape-fs.onrender.com//api/documents/swagger) </br></br>
 
+<b>Explanations:</b> </br>
+
+
+
+🚩 Since the project is deployed on render.com  using the free tier, it may occasionally enter sleep mode, which can result in a longer initial loading time.
+
+🚩 Flights are fetched from the Schiphol API on the backend.
+
+🚩 On the homepage, flights are listed with pagination. Filters for date, flight direction, and sorting are applied.
+
+🚩 Users can view detailed flight information by clicking the "Check Details" button.
+
+🚩 Each flight card displays the flight status and flight direction. Hovering over the flight status provides a description.
+
+🚩 Users can book a flight by clicking the "Book" button, which opens a modal where they can select the flight class.
+
+🚩 After logging in, users can book flights and view their booked flights on the "My Flights" page.
+
+🚩 Bookings are saved to MongoDB with my backend (Express.js).
+
+🚩 When a user books a flight, an email is sent to them via Nodemailer.
+
+🚩 When saving bookings, I also store the airline and destination information, allowing users to search for flights on the "My Flights" page using these fields.
+
+🚩 The "My Flights" page displays all flight information, and like the homepage, there is a "Flight Details" modal accessible via a button.
+
+🚩 Users can delete their bookings by clicking the "Delete" button.
+
+🚩 All screens have been optimized for responsive design.
+
+---
 <b>FRONTEND:</b> </br>
 
 🎯 React Development: Built an intuitive flight booking interface using React.js to provide a seamless and user-friendly experience for travelers.
 
 🛠 State Management: Utilized Redux Toolkit and Persist to manage flight data, bookings, and user preferences efficiently.
 
-🚀 React Router: Integrated React Router to allow users to navigate smoothly between flight search, booking, and profile pages.
+🚀 React Router: Integrated React Router to allow users to navigate smoothly between home page, my flights, login and register pages.
 
-🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, cancellations, and status updates.
+🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, deletions, and status updates.
 
-🔍 Search Functionality: Developed advanced search features enabling users to filter flights by date, destination, airline, and price range.
-
-📷 Document Upload: Supported the upload of documents like ID cards and passports for a streamlined check-in process.
+🔍 Search Functionality: Developed advanced search features enabling users to filter flights by date, flight direction, destination and airline. 
 
 🎨 UI Design: Designed a clean and responsive user interface using Tailwind CSS, ensuring a consistent experience across devices.
 
@@ -124,7 +153,7 @@
 
 📤 Flight Bookings & Email Notifications: Enabled flight bookings, saving the data in MongoDB, and sending confirmation emails to users using Nodemailer.
 
-📄 API Documentation: Created detailed API documentation with Swagger and Redoc, facilitating easy testing and usage of the API.
+📄 API Documentation: Created detailed API documentation with Swagger, facilitating easy testing and usage of the API.
 
 📊 Database Management: Used MongoDB and Mongoose for managing flight bookings, user data, and other related information, ensuring consistent querying and modeling.
 
@@ -134,7 +163,7 @@
 
 ✉️ Email Notifications: Automatically sent booking confirmation emails to users using Nodemailer after successful flight reservations.
 
-🌐 Scalable Deployment: Deployed on reliable platforms such as Netlify and Vercel to ensure scalability and availability.
+🌐 Scalable Deployment: Deployed on render.com to ensure scalability and availability.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -92,6 +92,39 @@
 
 📦 Frontend of the my [plane-scape-fs](https://github.com/ibrsec/plane-scape-fs) project </br></br>
 
+
+<b>Explanations:</b> </br>
+
+
+
+🚩 Since the project is deployed on render.com  using the free tier, it may occasionally enter sleep mode, which can result in a longer initial loading time.
+
+🚩 Flights are fetched from the Schiphol API on the backend.
+
+🚩 On the homepage, flights are listed with pagination. Filters for date, flight direction, and sorting are applied.
+
+🚩 Users can view detailed flight information by clicking the "Check Details" button.
+
+🚩 Each flight card displays the flight status and flight direction. Hovering over the flight status provides a description.
+
+🚩 Users can book a flight by clicking the "Book" button, which opens a modal where they can select the flight class.
+
+🚩 After logging in, users can book flights and view their booked flights on the "My Flights" page.
+
+🚩 Bookings are saved to MongoDB with my backend (Express.js).
+
+🚩 When a user books a flight, an email is sent to them via Nodemailer.
+
+🚩 When saving bookings, I also store the airline and destination information, allowing users to search for flights on the "My Flights" page using these fields.
+
+🚩 The "My Flights" page displays all flight information, and like the homepage, there is a "Flight Details" modal accessible via a button.
+
+🚩 Users can delete their bookings by clicking the "Delete" button.
+
+🚩 All screens have been optimized for responsive design.
+
+---
+
 <b>FRONTEND:</b> </br>
 
 🎯 React Development: Built an intuitive flight booking interface using React.js to provide a seamless and user-friendly experience for travelers.
