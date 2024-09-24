@@ -71,9 +71,9 @@
 <!-- ABOUT THE PROJECT -->
 <a name="about-the-project"></a>
 ## ℹ️ About The Project
-
+ 
 [![plane-scape](./client/public/project.gif)](https://plane-scape-fs.onrender.com/) 
-[![plane-scape](./client/public/project2.gif)](https://plane-scape-fs.onrender.com/) 
+[![plane-scape](./client/public/project-2.gif)](https://plane-scape-fs.onrender.com/) 
 ---
 <b>ERD:</b>
 [![stock-app-erd](./erd.png)](https://plane-scape-fs.onrender.com/)

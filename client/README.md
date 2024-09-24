@@ -67,7 +67,7 @@
 ## ℹ️ About The Project
 
 [![plane-scape-fs](./public/project.gif)](https://plane-scape-fs.onrender.com/)
-[![plane-scape-fs](./public/project2.gif)](https://plane-scape-fs.onrender.com/)
+[![plane-scape-fs](./public/project-2.gif)](https://plane-scape-fs.onrender.com/)
 
 
 
