@@ -155,6 +155,8 @@ const Login = () => {
               SignUp
             </Link>
           </p>
+          <p className="text-center text-gray-500 pt-5">Demo account username: josh</p>
+          <p className="text-center text-gray-500">Demo account pasword: Aa*12345</p>
         </div>
       </div>
     </div>
