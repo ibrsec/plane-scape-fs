@@ -10,6 +10,7 @@ module.exports = async () => {
       username: "adminuser", 
       password: "Aa*12345",
       fullName: "adminfirst", 
+      email: "ibr.seckin@gmail.com", 
       isAdmin: true, 
       gender:"male",
       image:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6jr5QyaNWzkPClr4Qpln80ceo_HAoVx86IA&s',
