@@ -1,0 +1,2050 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "plane-scape",
+    "description": "Fullstack plane-scape",
+    "termsOfService": "https://www.ibrsec.com",
+    "license": {
+      "name": "ISC"
+    },
+    "contact": {
+      "name": "ibrsec",
+      "email": "ibr.seckin@gmail.com"
+    }
+  },
+  "host": "planescape-fullstack.onrender.com",
+  "basePath": "/",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "securityDefinitions": {
+    "Token": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": " Simple token authentication *  example: <b>Token ...tokenkey...</b>"
+    },
+    "Bearer": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization",
+      "description": "Jwt token authentication *  example : <b>Bearer ...jwt tokenkey...</b>"
+    }
+  },
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/users/": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "List Users",
+        "description": "  List all users!</br></br>  <b>Permission= Loginned user</b></br>   - Normal users can't list other users</br>  - Admin users can list everyone</br></br>  Token endpoint is hidden </br></br>  You can send query with endpoint for filter[],search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=asc&sort[field2]=desc</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "url?filter[fieldName]=value",
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "url?search[fieldName]=value",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "url?sort[fieldName]=desc(or asc)",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "url?page=1",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "url?limit=20",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Listed!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Users are listed!"
+                },
+                "data": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create new User",
+        "description": "  Create a new user!</br></br>  <b>Permission= No Permission</b></br>   - Admin users can be create.d just by admin users</br></br>  - Password type Rules- [lenght:8-16, at least: 1 upper, 1 lower, 1 number, 1 special[@$!%*?&]]</br>  - Email type Rules- --@--.--</br>  - Required fields: - username, password, fullName, email, gender</br>   - Gender field: enum -> ['male', 'female']</br>   - Image field will be set according to the sended gender</br>    ",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "testuser"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password1*"
+                },
+                "fullName": {
+                  "type": "string",
+                  "example": "full name"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "required": [
+                "username",
+                "password",
+                "fullName",
+                "email",
+                "gender"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully  !",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Your account has been successfully created!"
+                },
+                "token": {
+                  "type": "string",
+                  "example": "tokenkey"
+                },
+                "bearer": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string",
+                      "example": "accestoken key"
+                    },
+                    "refreshToken": {
+                      "type": "string",
+                      "example": "refreshtoken key"
+                    }
+                  }
+                },
+                "data": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - username, password, fullName, email, gender fields are required!"
+          }
+        }
+      }
+    },
+    "/api/users/{id}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get a user",
+        "description": "  Get a user by id!!</br></br>  <b>Permission= Loginned user</b></br>   - Admin can list all users!</br>   - Normal user can list just theirselves!</br></br>",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "testuser"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password1*"
+                },
+                "fullName": {
+                  "type": "string",
+                  "example": "firstname"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            },
+            "description": "One field is enough!"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User is found!"
+                },
+                "data": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "202": {
+            "description": "Successfully partially updated!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User is partially updated!!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "modifiedCount": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  }
+                },
+                "new": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "204": {
+            "description": "Successfully deleted!"
+          },
+          "400": {
+            "description": "Bad request - Invalid userId(paramId) type(ObjectId)!"
+          },
+          "404": {
+            "description": "Not found - User not found fro delete!"
+          },
+          "500": {
+            "description": "Something went wrong! - asked record is found, but it couldn't be updated!"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Update a User",
+        "description": "  Update a User by id!</br></br>  <b>Permission= Normal user</b></br>   - Admin users can be update.d just by admin users</br>   - Other users can update theirselves</br>  - isAdmin modification is accessible for just the admin users!</br> </br>  - Password type Rules- [lenght:8-16, at least: 1 upper, 1 lower, 1 number, 1 special[@$!%*?&]]</br>  - Email type Rules- --@--.--</br>  - Required fields: - username, password, fullName, email, gender</br>  - Gender field: enum -> ['male', 'female']</br>   - Image field will be set according to the sended gender</br>    ",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "testuser"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password1*"
+                },
+                "fullName": {
+                  "type": "string",
+                  "example": "firstname"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                }
+              },
+              "required": [
+                "username",
+                "password",
+                "fullName",
+                "email",
+                "gender"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successfully  !",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User is  !!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "modifiedCount": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  }
+                },
+                "new": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request    </br>- Invalid userId(paramId) type(ObjectId)!   </br>- username, password, fullName, email, gender fields are required!   </br>- Non-admin users can't modify other users!   "
+          },
+          "404": {
+            "description": "Not found - User not found for update!"
+          },
+          "500": {
+            "description": "Something went wrong! - asked record is found, but it couldn't be updated!"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete a user",
+        "description": "  Delete a user by id!!</br></br>  <b>Permission= Admin user</b></br>   - Admin can delete all users!</br>  - Other users can't delete any user!</br>",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successfully  !"
+          },
+          "400": {
+            "description": "Bad request - Invalid userId(paramId) type(ObjectId)!"
+          },
+          "404": {
+            "description": "Not found - User not found fro delete!"
+          },
+          "500": {
+            "description": "Something went wrong! - asked record is found, but it couldn't be updated!"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Partial Update",
+        "description": "  Partial Update a User by id!</br></br>  <b>Permission= Normal user</b></br>   - Admin users can be update.d just by admin users</br>  - Other users can update just theirselves</br>  - isAdmin modification is accessible for just the admin users!</br> </br>  - Password type Rules- [lenght:8-16, at least: 1 upper, 1 lower, 1 number, 1 special[@$!%*?&]]</br>  - Email type Rules- --@--.--</br>  - Required fields: - At least one of the username, password, fullName, email, gender, isAdmin fields is required!</br>  - Gender field: enum -> ['male', 'female']</br>   - Image field will be set according to the sended gender</br>   ",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "One field is enough!",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "testuser"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password1*"
+                },
+                "fullName": {
+                  "type": "string",
+                  "example": "firstname"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "email"
+                },
+                "gender": {
+                  "type": "string",
+                  "example": "male"
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": false
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Successfully partially updated!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "User is partially updated!!"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "modifiedCount": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  }
+                },
+                "new": {
+                  "$ref": "#/definitions/User"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request    </br>- Invalid userId(paramId) type(ObjectId)!   </br>- At least one field of username, password, fullName, gender, email, isAdmin fields is required!   </br>- Non-admin users can't modify other users!      "
+          },
+          "404": {
+            "description": "Not found - User not found for partial update!"
+          },
+          "500": {
+            "description": "Something went wrong! - asked record is found, but it couldn't be updated!"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Login",
+        "description": "  Login with username and password!</br></br>  <b>Permission= No Permission</b></br></br>  - Password type Rules- [lenght:8-16, at least: 1 upper, 1 lower, 1 number, 1 special[@$!%*?&]]</br>  - Email type Rules- --@--.--</br>  - Required fields: - username, password</br>  ",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "username"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "Password1*"
+                }
+              },
+              "required": [
+                "username",
+                "password"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Logined!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Login is OK!"
+                },
+                "token": {
+                  "type": "string",
+                  "example": "tokenkey"
+                },
+                "bearer": {
+                  "type": "object",
+                  "properties": {
+                    "accessToken": {
+                      "type": "string",
+                      "example": "access token"
+                    },
+                    "refreshToken": {
+                      "type": "string",
+                      "example": "refresh token"
+                    }
+                  }
+                },
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "type": "string",
+                      "example": "66362c828c9af95390f5aae5"
+                    },
+                    "username": {
+                      "type": "string",
+                      "example": "testba"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "f1dffdee8d0642d170e697331929a7250aedca4ad508f4d1f9986dbdb888c5fc"
+                    },
+                    "fullName": {
+                      "type": "string",
+                      "example": "testba"
+                    },
+                    "gender": {
+                      "type": "string",
+                      "example": "male"
+                    },
+                    "isAdmin": {
+                      "type": "boolean",
+                      "example": false
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request :   </br>- username and password fields are required!   "
+          },
+          "401": {
+            "description": "Unauthorized:    </br>- User not found!    </br>- Invalid password!   "
+          }
+        }
+      }
+    },
+    "/api/auth/refresh": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Refresh token",
+        "description": "  Refresh the access token with refresh token!</br></br>   <b>Permission= No Permission</b></br></br>  - Required fields: - bearer. refresh Token</br>  ",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "bearer": {
+                  "type": "object",
+                  "properties": {
+                    "refresh Token": {
+                      "type": "string",
+                      "example": "...refresh token"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully  !",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Access token is  !!"
+                },
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "bearer": {
+                      "type": "object",
+                      "properties": {
+                        "accessToken": {
+                          "type": "string",
+                          "example": "access token"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - bearer.refreshToken is a required field!"
+          },
+          "401": {
+            "description": "Unauthorized:    </br>- Unauhtorized - Invalid signature - invalid token or token is expired!!    </br>- User not found!   </br>- Invalid password!   "
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Logout",
+        "description": "  Logout with with token(simple token, not jwt) or with out token!</br>  - if api request is sended with a simple token(Authentication header), that token will be deleted!</br>  - if api request is not sended with a simple token(Authentication header), Logout will happen without deleting a token!</br>  - There is not a token deletion for JWT Token, Logout will happen!</br>  </br></br>  <b>Permission= No Permission</b></br></br>  ",
+        "responses": {
+          "200": {
+            "description": "Successfully Logged out!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Logout is OK!"
+                },
+                "result": {
+                  "type": "object",
+                  "properties": {
+                    "deletedToken": {
+                      "type": "number",
+                      "example": 1
+                    }
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/flights/": {
+      "get": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "List Flights",
+        "description": "  List all Flights!</br>  Gets data from schiphol api and returns it!</br></br>  <b>Permission= No permission</b></br> </br>   You can send query with endpoint for date, direction, sort ,page.</br>    date format: YYYY-MM-DD</br>    direction format: enum -> ['A', 'D'] (Arrival, Department)</br>    sort fields: scheduleDate(flight date), scheduleTime(flight time) </br>    +field : ascending </br>    -field : descending </br> </br>   <ul> Examples:   <li>URL/?<b>date=2024-09-21&direction=D</b></li>   <li>URL/?<b>direction=A&page=2</b></li>   <li>URL/?<b>date=2024-09-21&sort=+scheduleDate</b></li>   <li>URL/?<b>page=2&direction=A</b></li>  </ul>  ",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "+scheduleDate, -scheduleTime",
+            "type": "string"
+          },
+          {
+            "name": "direction",
+            "in": "query",
+            "description": "D : Department, A : Arrival",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "description": "YYYY-MM-DD",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Listed!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Flights are listed!"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Flight"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "204": {
+            "description": "No flights found!"
+          }
+        }
+      }
+    },
+    "/api/flights/{flightId}": {
+      "get": {
+        "tags": [
+          "Flights"
+        ],
+        "summary": "Get a Flight",
+        "description": "  Get a Flight by flight id(ObjectId)!</br>   Gets data from schiphol api and returns it!</br></br>  <b>Permission= No Permission</b></br>   ",
+        "parameters": [
+          {
+            "name": "flightId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Found!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Flight is found!"
+                },
+                "data": {
+                  "$ref": "#/definitions/Flight"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "404": {
+            "description": "Not found - Flight not found!"
+          }
+        }
+      }
+    },
+    "/api/destinations/{iata}": {
+      "get": {
+        "tags": [
+          "Destinations"
+        ],
+        "summary": "Get Destination",
+        "description": "",
+        "parameters": [
+          {
+            "name": "iata",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Listed!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Destination is found!"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Destination"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid iata length! ( required length: 3)!"
+          }
+        }
+      }
+    },
+    "/api/bookings/": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "List all Bookings",
+        "description": "  List all Bookings!</br>  - Admin can list all bookings</br>  - Users can list just own bookings</br>  </br>  <b>Permission= Loginned user</b></br>   You can send query with endpoint for filter[],search[], sort[], page and limit.  <ul> Examples:   <li>URL/?<b>filter[field1]=value1&filter[field2]=value2</b></li>   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>   <li>URL/?<b>page=2&limit=1</b></li>  </ul>  ",
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "description": "url?filter[fieldName]=value",
+            "type": "string"
+          },
+          {
+            "name": "search",
+            "in": "query",
+            "description": "url?search[fieldName]=value",
+            "type": "string"
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "url?sort[fieldName]=desc(or asc)",
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "url?page=1",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "url?limit=20",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Listed!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Your Bookings are listed!"
+                },
+                "details": {
+                  "type": "object",
+                  "properties": {}
+                },
+                "avgFare": {
+                  "type": "number",
+                  "example": 300
+                },
+                "data": {
+                  "$ref": "#/definitions/Booking"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Create Booking",
+        "description": "  Create a Booking!</br></br>  <b>Permission= Loginned user</b></br></br>  - userId should exist on users(comes with login)</br>   - flightDirection value should be 'D'(department)</br>   - flightClass enum : ['Economy', 'Premium Economy','Business','First Class']</br>   - Price values should be sent according to the flight classes -> : Economy: 100, Premium Economy: 200,Business: 500, First Class: 1000</br>   - prefixIATA -> 2 letter string</br>   - prefixICAO -> 3 letter string</br>   - route field -> ['string'] -> array of string and it takes 3 letter string values</br>   - scheduleDateTime field -> Date format</br>  - Required fields : userId(comes with login), flightId, flightDirection, flightNumber, flightName, flightClass, price, prefixIATA, prefixICAO, route, scheduleDateTime, destination, airline </br>  </br>   ",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "flightId": {
+                  "type": "string",
+                  "example": "140702903160460184"
+                },
+                "flightNumber": {
+                  "type": "number",
+                  "example": 5358
+                },
+                "flightName": {
+                  "type": "string",
+                  "example": "HV5358"
+                },
+                "destination": {
+                  "type": "string",
+                  "example": "example destination"
+                },
+                "airline": {
+                  "type": "string",
+                  "example": "Example airline"
+                },
+                "flightDirection": {
+                  "type": "string",
+                  "example": "D"
+                },
+                "flightClass": {
+                  "type": "string",
+                  "example": "Economy"
+                },
+                "price": {
+                  "type": "number",
+                  "example": 100
+                },
+                "prefixIATA": {
+                  "type": "string",
+                  "example": "HV"
+                },
+                "prefixICAO": {
+                  "type": "string",
+                  "example": "TRA"
+                },
+                "route": {
+                  "type": "array",
+                  "example": [
+                    "FAO"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "scheduleDateTime": {
+                  "type": "string",
+                  "example": "2024-09-22T01:05:00.000+02:00"
+                }
+              },
+              "required": [
+                "flightId",
+                "flightNumber",
+                "flightName",
+                "destination",
+                "airline",
+                "flightDirection",
+                "flightClass",
+                "price",
+                "prefixIATA",
+                "prefixICAO",
+                "route",
+                "scheduleDateTime"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Successfully created!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Your flight has been successfully booked! You can view the details in your bookings!"
+                },
+                "data": {
+                  "$ref": "#/definitions/Booking"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request: </br>  - userId(comes with login), flightId, flightNumber, flightName, destination, airline flightDirection, flightClass, price, prefixIATA, prefixICAO, route, scheduleDateTime fields are required!</br>   - Invalid userId type(ObjectId)!</br>   - route field must be a array and at least contain one element!</br>   - All elements in the route field must be 3-letter strings!</br>   - scheduleDateTime is not a valid date!</br>   - Booking a flight for past dates is not allowed!</br>   - Booking is only allowed for departing flights! - flightDirection field value must be 'D'. )</br>    </br>     "
+          },
+          "404": {
+            "description": "Not Found: </br>  - userId not found on users!</br>   </br>     "
+          }
+        }
+      }
+    },
+    "/api/bookings/{id}": {
+      "get": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Get a Booking",
+        "description": "  Get a Booking by booking id(ObjectId)!</br>  - Admin can list all bookings</br>  - Users can list just own bookings</br></br>  <b>Permission= Loginned user</b></br>   ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Found!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Booking is found!"
+                },
+                "data": {
+                  "$ref": "#/definitions/Booking"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid param Id type! (it Should be ObjectId)!"
+          },
+          "404": {
+            "description": "Not found - Booking not found!"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Bookings"
+        ],
+        "summary": "Delete a Booking",
+        "description": "  Delete a Booking by booking id(ObjectId)!</br></br>  <b>Permission= Loginned user</b></br>   - Users can delete just own bookings</br>  - Admin user can delete all bookings</br>  </br>    ",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Deleted!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Booking is  !"
+                },
+                "data": {
+                  "$ref": "#/definitions/Booking"
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad request - Invalid param(booking) Id type! (it Should be ObjectId)!"
+          },
+          "403": {
+            "description": "Forbidden: </br>  - You are not authorized to delete this booking!</br>     "
+          },
+          "404": {
+            "description": "Not found - Booking not found for deletion!"
+          },
+          "500": {
+            "description": "Something went wrong! - Booking is found! But it couldn't be deleted!"
+          }
+        }
+      }
+    },
+    "/api/airlines/{iata}": {
+      "get": {
+        "tags": [
+          "Airlines"
+        ],
+        "summary": "Get Airline",
+        "description": "",
+        "parameters": [
+          {
+            "name": "iata",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully Listed!",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "error": {
+                  "type": "boolean",
+                  "example": false
+                },
+                "message": {
+                  "type": "string",
+                  "example": "Airline is found!"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Airline"
+                  }
+                }
+              },
+              "xml": {
+                "name": "main"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - Invalid iata length! ( required length: 2)!"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": true
+            },
+            "index": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "password": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "set": {
+              "type": "function"
+            },
+            "validate": {
+              "type": "array",
+              "example": [
+                null,
+                "Invalid password type Rules- [lenght:8-16, at least: 1 upper, 1 lower, 1 number, 1 special[@$!%*?&]]"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "fullName": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "email": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "unique": {
+              "type": "boolean",
+              "example": true
+            },
+            "index": {
+              "type": "boolean",
+              "example": true
+            },
+            "validate": {
+              "type": "array",
+              "example": [
+                null,
+                "Invalid email type, type: __@__.__"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "gender": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "enum": {
+              "type": "array",
+              "example": [
+                "male",
+                "female"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "image": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "isAdmin": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "default": {
+              "type": "boolean",
+              "example": false
+            }
+          }
+        }
+      }
+    },
+    "Booking": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "ref": {
+              "type": "string",
+              "example": "User"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "flightId": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "flightDirection": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "enum": {
+              "type": "array",
+              "example": [
+                "D"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "flightNumber": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "flightName": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "airline": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "destination": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "prefixIATA": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "maxLength": {
+              "type": "number",
+              "example": 2
+            },
+            "minLength": {
+              "type": "number",
+              "example": 2
+            }
+          }
+        },
+        "prefixICAO": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "maxLength": {
+              "type": "number",
+              "example": 3
+            },
+            "minLength": {
+              "type": "number",
+              "example": 3
+            }
+          }
+        },
+        "route": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "function"
+              },
+              "trim": {
+                "type": "boolean",
+                "example": true
+              },
+              "required": {
+                "type": "boolean",
+                "example": true
+              },
+              "maxLength": {
+                "type": "number",
+                "example": 3
+              },
+              "minLength": {
+                "type": "number",
+                "example": 3
+              }
+            }
+          }
+        },
+        "flightClass": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "enum": {
+              "type": "array",
+              "example": [
+                "Economy",
+                "Premium Economy",
+                "Business",
+                "First Class"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "price": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            },
+            "validate": {
+              "type": "object",
+              "properties": {
+                "validator": {
+                  "type": "function"
+                },
+                "message": {
+                  "type": "function"
+                }
+              }
+            }
+          }
+        },
+        "scheduleDateTime": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "scheduleDate": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "required": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "scheduleTime": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "function"
+            },
+            "trim": {
+              "type": "boolean",
+              "example": true
+            },
+            "match": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      }
+    },
+    "Destination": {
+      "type": "object",
+      "properties": {
+        "city": {
+          "type": "string",
+          "example": "Antalya"
+        },
+        "country": {
+          "type": "string",
+          "example": "Turkey"
+        },
+        "iata": {
+          "type": "string",
+          "example": "AYT"
+        },
+        "publicName": {
+          "type": "object",
+          "properties": {
+            "dutch": {
+              "type": "string",
+              "example": "Antalya"
+            },
+            "english": {
+              "type": "string",
+              "example": "Antalya"
+            }
+          }
+        }
+      }
+    },
+    "Flight": {
+      "type": "object",
+      "properties": {
+        "lastUpdatedAt": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "actualLandingTime": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "actualOffBlockTime": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "aircraftRegistration": {
+          "type": "string",
+          "example": "string"
+        },
+        "aircraftType": {
+          "type": "object",
+          "properties": {
+            "iataMain": {
+              "type": "string",
+              "example": "string"
+            },
+            "iataSub": {
+              "type": "string",
+              "example": "string"
+            }
+          }
+        },
+        "baggageClaim": {
+          "type": "object",
+          "properties": {
+            "belts": {
+              "type": "array",
+              "example": [
+                "string"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "checkinAllocations": {
+          "type": "object",
+          "properties": {
+            "checkinAllocations": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "endTime": {
+                    "type": "string",
+                    "example": "2024-09-20T07:24:45.616Z"
+                  },
+                  "rows": {
+                    "type": "object",
+                    "properties": {
+                      "rows": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "position": {
+                              "type": "string",
+                              "example": "string"
+                            },
+                            "desks": {
+                              "type": "object",
+                              "properties": {
+                                "desks": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object",
+                                    "properties": {
+                                      "checkinClass": {
+                                        "type": "object",
+                                        "properties": {
+                                          "code": {
+                                            "type": "string",
+                                            "example": "string"
+                                          },
+                                          "description": {
+                                            "type": "string",
+                                            "example": "string"
+                                          }
+                                        }
+                                      },
+                                      "position": {
+                                        "type": "number",
+                                        "example": 0
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "startTime": {
+                    "type": "string",
+                    "example": "2024-09-20T07:24:45.616Z"
+                  }
+                }
+              }
+            },
+            "remarks": {
+              "type": "object",
+              "properties": {
+                "remarks": {
+                  "type": "array",
+                  "example": [
+                    "string"
+                  ],
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "codeshares": {
+          "type": "object",
+          "properties": {
+            "codeshares": {
+              "type": "array",
+              "example": [
+                "string"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "estimatedLandingTime": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "expectedTimeBoarding": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "expectedTimeGateClosing": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "expectedTimeGateOpen": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "expectedTimeOnBelt": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "expectedSecurityFilter": {
+          "type": "string",
+          "example": "string"
+        },
+        "flightDirection": {
+          "type": "string",
+          "example": "A"
+        },
+        "flightName": {
+          "type": "string",
+          "example": "string"
+        },
+        "flightNumber": {
+          "type": "number",
+          "example": 0
+        },
+        "gate": {
+          "type": "string",
+          "example": "string"
+        },
+        "pier": {
+          "type": "string",
+          "example": "string"
+        },
+        "id": {
+          "type": "string",
+          "example": "string"
+        },
+        "isOperationalFlight": {
+          "type": "boolean",
+          "example": true
+        },
+        "mainFlight": {
+          "type": "string",
+          "example": "string"
+        },
+        "prefixIATA": {
+          "type": "string",
+          "example": "string"
+        },
+        "prefixICAO": {
+          "type": "string",
+          "example": "string"
+        },
+        "airlineCode": {
+          "type": "number",
+          "example": 0
+        },
+        "publicEstimatedOffBlockTime": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "publicFlightState": {
+          "type": "object",
+          "properties": {
+            "flightStates": {
+              "type": "array",
+              "example": [
+                "string"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "route": {
+          "type": "object",
+          "properties": {
+            "destinations": {
+              "type": "array",
+              "example": [
+                "string"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "eu": {
+              "type": "string",
+              "example": "string"
+            },
+            "visa": {
+              "type": "boolean",
+              "example": true
+            }
+          }
+        },
+        "scheduleDateTime": {
+          "type": "string",
+          "example": "2024-09-20T07:24:45.616Z"
+        },
+        "scheduleDate": {
+          "type": "string",
+          "example": "string"
+        },
+        "scheduleTime": {
+          "type": "string",
+          "example": "string"
+        },
+        "serviceType": {
+          "type": "string",
+          "example": "string"
+        },
+        "terminal": {
+          "type": "number",
+          "example": 0
+        },
+        "transferPositions": {
+          "type": "object",
+          "properties": {
+            "transferPositions": {
+              "type": "array",
+              "example": [
+                0
+              ],
+              "items": {
+                "type": "number"
+              }
+            }
+          }
+        },
+        "schemaVersion": {
+          "type": "string",
+          "example": "string"
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "Token": []
+    },
+    {
+      "Bearer": []
+    }
+  ]
+}
