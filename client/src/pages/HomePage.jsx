@@ -1,5 +1,4 @@
 import Flights from "../components/homePage/flights/Flights";
-import BookFlight from "../components/homePage/BookFlight";
 import Navbar from "../components/navbar/Navbar";
 
 import OtherJobCard from "../components/homePage/OtherJobCard";

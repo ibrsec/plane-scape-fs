@@ -71,7 +71,7 @@ const PaginationBooking = () => {
       <div className="text-center my-3">Page: {page}</div>
       <div className="text-center my-3 flex items-center justify-center gap-1 flex-wrap">
         <span>Total Page: {pageDetails?.pages ? pageDetails?.pages?.totalPages : 1}</span>
-        <span>Total Recors: {pageDetails?.totalRecords}</span></div>
+        <span>Total Records: {pageDetails?.totalRecords}</span></div>
     </div>
   );
 };

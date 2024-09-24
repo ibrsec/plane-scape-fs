@@ -12,7 +12,6 @@ router.all('/',(req,res)=>{
         documents: {
             json: '/api/documents/json',
             swagger:'/api/documents/swagger',
-            redoc:'/api/documents/redoc',
         }
     })
 })

@@ -46,7 +46,6 @@ app.all("/api", (req, res) => {
     documents: [
       "/api/documents/json",
       "/api/documents/swagger",
-      "/api/documents/redoc",
     ],
     user: req.user,
   });

@@ -1,5 +1,4 @@
 import { ImPriceTag } from "react-icons/im";
-import { FaEarthAmericas } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import profileImage from "../../assets/profile-placeholder.jpg";
 import { useSelector } from "react-redux";
@@ -19,12 +18,6 @@ const NavItems = () => {
         <Link to="/" className={"flex items-center gap-2  transition-all duration-300 hover:text-primary-color active:text-black   hover:scale-105 py-1 px-2 rounded-md  "+ (location.pathname === '/' ? 'bg-home-bg text-primary-color' : "")}>
           <ImPriceTag color="#4A0096" className=" translate-y-0.5" />
           <span>Flights</span>
-        </Link>
-      </li>
-      <li>
-        <Link className="flex items-center gap-2 transition-all duration-300 hover:text-primary-color active:text-black   hover:scale-105 ">
-          <FaEarthAmericas color="#4A0096" className=" translate-y-0.5" />
-          <span>Discover</span>
         </Link>
       </li>
 
@@ -67,6 +60,9 @@ const NavItems = () => {
             className="w-8 h-8 rounded-full border-2 border-primary-color"
             src={user?.image || profileImage}
             alt="profileImage"
+            onError={(e) => {
+              e.target.src = profileImage // Placeholder
+            }}
           />
           <span>{user?.fullName}</span>
           

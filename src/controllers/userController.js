@@ -153,13 +153,13 @@ module.exports.user = {
     }
 
      // cancelled(avatar placeholder is not working) - profile image will be set acoording to the sended gender
-     // avatar api is working again
-      req.body.gender === "male"
-        ? (req.body.image = `https://avatar.iran.liara.run/public/boy?username=${username}`)
-        : (req.body.image = `https://avatar.iran.liara.run/public/girl?username=${username}`);
+
+      // req.body.gender === "male"
+      //   ? (req.body.image = `https://avatar.iran.liara.run/public/boy?username=${username}`)
+      //   : (req.body.image = `https://avatar.iran.liara.run/public/girl?username=${username}`);
     
-      // // new image set->
-      //   req.body.image = `https://api.dicebear.com/9.x/bottts/svg?seed=${username}`;
+      // new image set->
+        req.body.image = `https://api.dicebear.com/9.x/bottts/svg?seed=${username}`;
 
       
         //password encryptor is happenning in userModel
