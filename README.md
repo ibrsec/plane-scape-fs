@@ -95,39 +95,46 @@
 
 📦 A Fullstack Plane Scape Project</br>
 🏀 [Frontend Live](https://plane-scape-fs.onrender.com/) || [Backend Swagger](https://plane-scape-fs.onrender.com//api/documents/swagger) </br></br>
-FRONTEND:</br>
-🎯 <b>React Development:</b> Built a responsive frontend with React.js, delivering a seamless user experience.</br>
 
-🛠 <b>State Management:</b> Utilized Redux Toolkit and Persist for consistent state management across sessions.</br>
+<b>FRONTEND:</b> </br>
 
-🚀 <b>React Router:</b> Integrated React Router for smooth navigation between key sections like dashboard, products, and sales.</br>
+🎯 React Development: Built an intuitive flight booking interface using React.js to provide a seamless and user-friendly experience for travelers.
 
-📊 <b>UI Components:</b> Employed Material UI's DataGrid and Charts for interactive tables and data visualizations.</br>
+🛠 State Management: Utilized Redux Toolkit and Persist to manage flight data, bookings, and user preferences efficiently.
 
-📝 <b>Form Validation:</b> Managed forms with Formik and Yup for accurate data input and validation.</br>
+🚀 React Router: Integrated React Router to allow users to navigate smoothly between flight search, booking, and profile pages.
 
-🔔 <b>User Notifications:</b> Added real-time feedback using Toastify for actions like adding or editing records.</br>
+🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, cancellations, and status updates.
 
-💾 <b>CRUD Operations:</b> Implemented full CRUD functionality for products, sales, firms, and more.</br>
+🔍 Search Functionality: Developed advanced search features enabling users to filter flights by date, destination, airline, and price range.
 
-🃏 <b>Card Layouts:</b> Designed intuitive card-based interfaces for managing firms and brands.</br>
+📷 Document Upload: Supported the upload of documents like ID cards and passports for a streamlined check-in process.
 
-📊 <b>Data Tables:</b> Organized stock information in editable tables for easy data management.
+🎨 UI Design: Designed a clean and responsive user interface using Tailwind CSS, ensuring a consistent experience across devices.
+
 </br></br>
-BACKEND:</br>
-<b>🎯 Express.js Framework:</b> Developed a robust RESTful API with Express.js for secure and efficient stock data management.
 
-<b>🔒 Authentication & Authorization:</b> Implemented Simple Token, JWT for secure user authentication.
+<b>BACKEND:</b> </br>
 
-<b>📄 API Documentation:</b> Created clear API docs with Swagger and Redoc for easy testing and understanding.
+🎯 Express.js Framework: Developed a comprehensive RESTful API using Express.js for secure and efficient flight data management.
 
-<b>📊 Database Management:</b> Utilized MongoDB and Mongoose for consistent data modeling and querying.
+🔗 External API Integration: Fetched real-time flight information from external APIs, enabling users to search, book, and list available flights.
 
-<b>🔄 CRUD Operations:</b> Built full CRUD functionality for products, sales, purchases, firms, and brands.
+🔒 Authentication & Authorization: Implemented JWT-based authentication for secure user login and session management.
 
-<b>🛠 Middleware & Error Handling:</b> Added custom middleware for validation and consistent error handling.
+📤 Flight Bookings & Email Notifications: Enabled flight bookings, saving the data in MongoDB, and sending confirmation emails to users using Nodemailer.
 
-<b>🌐 Scalable Deployment:</b> Deployed on scalable platforms like Netlify and Vercel for high availability.
+📄 API Documentation: Created detailed API documentation with Swagger and Redoc, facilitating easy testing and usage of the API.
+
+📊 Database Management: Used MongoDB and Mongoose for managing flight bookings, user data, and other related information, ensuring consistent querying and modeling.
+
+🔄 CRUD Operations: Built full CRUD functionality for flights, bookings, and users, allowing for efficient flight booking management and user data handling.
+
+🛠 Middleware & Error Handling: Added custom middleware for request validation and global error handling using express-async-errors for consistent error management.
+
+✉️ Email Notifications: Automatically sent booking confirmation emails to users using Nodemailer after successful flight reservations.
+
+🌐 Scalable Deployment: Deployed on reliable platforms such as Netlify and Vercel to ensure scalability and availability.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

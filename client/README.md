@@ -1,70 +1,221 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
+ 
+ 
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+   
+  <a href="https://github.com/ibrsec/plane-scape-fs/tree/main/client">
+    <img src="./public/logo.png" alt="Logo" width="250"   >
+  </a>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  <h3 align="center">Front end of the Full stack Plane Scape App</h3>
 
-## Available Scripts
+  <p align="center">
+    An awesome Full stack Plane Scape App
+    <!-- <a href="https://github.com/ibrsec/stock-app"><strong>Explore the docs »</strong></a> -->
+    <br />
+    <br />
+    <a href="https://plane-scape-fs.onrender.com/">View Demo</a>
+    ·
+    <a href="https://github.com/ibrsec/plane-scape-fs">Full project Repo</a>
+    ·
+    <a href="https://github.com/ibrsec/plane-scape-fs/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/ibrsec/plane-scape-fs/issues">Request Feature</a>
+  </p>
+</div>
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>📎 Table of Contents 📎 </summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+     <!-- <li><a href="#figma">Figma</a></li> -->
+     <li><a href="#overview">Overview</a></li>
+     <li><a href="#quick-setup">Quick Setup</a></li>
+     <li><a href="#directory-structure">Directory structure</a></li>
+     <li><a href="#built-with">Built With</a></li>
+    <!-- <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li> -->
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    
+  </ol>
+</details>
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- ABOUT THE PROJECT -->
+<a name="about-the-project"></a>
+## ℹ️ About The Project
 
-### `npm run eject`
+[![plane-scape-fs](./public/project.gif)](https://plane-scape-fs.onrender.com/)
+[![plane-scape-fs](./public/project2.gif)](https://plane-scape-fs.onrender.com/)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<!-- ## Figma 
 
-### Code Splitting
+<a href="https://www.figma.com/file/ePyCHKsx2ODB32uLgyUEEd/bootstrap-home-page?type=design&node-id=0%3A1&mode=design&t=edDzadCB9Ev5FS1a-1">Figma Link</a>  
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+--- -->
+<a name="overview"></a>
+## 👀 Overview
 
-### Advanced Configuration
+📦 Frontend of the my [plane-scape-fs](https://github.com/ibrsec/plane-scape-fs) project </br></br>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+<b>FRONTEND:</b> </br>
 
-### Deployment
+🎯 React Development: Built an intuitive flight booking interface using React.js to provide a seamless and user-friendly experience for travelers.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+🛠 State Management: Utilized Redux Toolkit and Persist to manage flight data, bookings, and user preferences efficiently.
 
-### `npm run build` fails to minify
+🚀 React Router: Integrated React Router to allow users to navigate smoothly between flight search, booking, and profile pages.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, cancellations, and status updates.
+
+🔍 Search Functionality: Developed advanced search features enabling users to filter flights by date, destination, airline, and price range.
+
+📷 Document Upload: Supported the upload of documents like ID cards and passports for a streamlined check-in process.
+
+🎨 UI Design: Designed a clean and responsive user interface using Tailwind CSS, ensuring a consistent experience across devices.
+
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<a name="quick-setup"></a>
+## 🛫 Quick Setup
+
+```sh
+# clone the project
+git clone https://github.com/ibrsec/plane-scape-fs.git
+
+# enter the project directory
+cd plane-scape-fs
+
+# set the .env file to the root of the project
+# .env-sample is exist on the project
+.env 
+
+
+
+# install dependency
+# linux
+npm run setup-production
+# windows
+npm run setup-production-windows
+
+# run
+node index.js
+
+#Land on
+http://localhost:10000 from browser
+
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- ## 🐞 Debug
+
+![plane-scape-fs.gif](/plane-scape-fs.gif) -->
+
+
+
+
+
+
+
+
+<a name="directory-structure"></a>
+## 📂 Directory structure 
+
+```diff
++ plane-scape-fs/client  (folder)   
+|---client (folder)   
+      |          
+      |---public (folder) 
+      |                
++         |---src (folder) 
+      |     |---assests (folder) 
+      |     |           
+      |     |---pages (folder)       
+      |     |           
+      |     |---components (folder) 
+      |     |    
+      |     |---app (folder) ---store.jsx      
+      |     |          
+      |     |---features (folder) (slices and store)         
+      |     |          
+      |     |---router (folder)         
+      |     |          
+      |     |---services (folder)              
+      |     |          
+      |     |---helper (folder)          
+      |     |          
+      |     |---App.js 
+      |     |---App.css 
+      |     |---Index.js
+      |     └---Index.css
+      |      
+      |----package.json 
+      |----tailwind.config.js 
+      └----readme.md 
+        
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+---
+
+<a name="built-with"></a>
+### 🏗️ Built With
+
+ 
+<!-- https://dev.to/envoy_/150-badges-for-github-pnk  search skills-->
+
+
+ <img src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
+ <img src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white&color=red"> 
+ <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">  
+ <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"> 
+ <img src="https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white"> 
+
+ <img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white"> 
+ <img src="https://img.shields.io/badge/Redux Toolkit-593D88?style=for-the-badge&logo=redux&logoColor=white"> 
+ <img src="https://img.shields.io/badge/Redux--Persist -593D88?style=for-the-badge&logo=redux&logoColor=white">  
+
+ <img src="https://img.shields.io/badge/Axios-593D88?style=for-the-badge&logo=axios&logoColor=white"> 
+ <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white"> 
+ 
+ <img src="https://img.shields.io/badge/Toastify-45CC11?style=for-the-badge&logo=toastify-ui&logoColor=white"> 
+ 
