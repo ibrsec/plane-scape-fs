@@ -181,9 +181,7 @@ cd plane-scape-fs
 
 # set the .env file to the root of the project
 # .env-sample is exist on the project
-.env 
-
-
+# .env file fields are also below
 
 # install dependency
 # linux
@@ -197,6 +195,25 @@ node index.js
 #Land on
 http://localhost:10000 from browser
 
+```
+
+```sh
+# .env file
+PORT=10000
+# HOST=localhost # for swagger
+HOST=plane-scape-fs.onrender.com # for swagger
+CONNETION_STRING_MONGODB=<mongodb_connection_string>
+NODE_ENV=prod
+PAGE_SIZE=15
+SECRET_KEY=sdkjasdasdfffbKdfgJHB768r6GJHV865R&%5623yvasytfg # for password encrypt
+ACCESS_KEY=sdkjfskfjsdfhsdgfgdfdUIH^T*%^uig96785ftivybu2on3ipfyisg # for jwt
+REFRESH_KEY=sdkjfssdfsdfkfsdfjhdUIH^T*%^uig96785ftivybu2on3ipfyisg # for jwt
+SCHIPHOL_APP_ID=<schiphol_app_id>
+SCHIPHOL_APP_KEY=<schiphol_app_key>
+SCHIPHOL_RESOURCE_VERSION=v4
+SCHIPHOL_URL=https://api.schiphol.nl/public-flights
+MAILJET_API_KEY=<mailjet_app_key>
+MAILJET_USER=<mailjet_user> 
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
