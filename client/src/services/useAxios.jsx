@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAuthLogout, refreshTokenSuccess } from "../app/features/authSlice";
 
 const useAxios = () => {
-      const baseURL = "http://localhost:10000/api";
-      // const baseURL = "/api"; 
+      // const baseURL = "http://localhost:10000/api";
+      const baseURL = "/api"; 
 
   const accessToken = useSelector((state) => state.auth.accessToken);
   const refreshToken = useSelector((state) => state.auth.refreshToken);
