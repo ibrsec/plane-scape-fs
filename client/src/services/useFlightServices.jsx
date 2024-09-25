@@ -11,17 +11,22 @@ import { toastError } from "../helpers/toastify";
 const useFlightServices = () => {
   const { axiosPublic } = useAxios();
   const dispatch = useDispatch();
-  const { dateGlobal, sortGlobal, directionGlobal, pageGlobal } = useSelector(
-    (state) => state.flight
-  );
+  const {
+    dateGlobal,
+    sortGlobal,
+    directionGlobal,
+    pageGlobal,
+    destinationGlobal,
+  } = useSelector((state) => state.flight);
 
-  const getFlights = async () => { 
+  const getFlights = async () => {
     const params = {};
-    params.page = pageGlobal;
+    if (pageGlobal) params.page = pageGlobal;
     if (dateGlobal) params.date = dateGlobal;
     // if (stopGlobal) params.stop = stopGlobal;
     if (sortGlobal) params.sort = sortGlobal;
     if (directionGlobal) params.direction = directionGlobal;
+    if (destinationGlobal) params.route = destinationGlobal;
 
     dispatch(flightFetchStart());
     try {
@@ -38,16 +43,15 @@ const useFlightServices = () => {
     }
   };
 
-
-  const getCurrentFlight = async (flightId) => { 
-// console.log('flightId', flightId, typeof flightId)
+  const getCurrentFlight = async (flightId) => {
+    // console.log('flightId', flightId, typeof flightId)
     dispatch(flightFetchStart());
     try {
-      if(!flightId){
+      if (!flightId) {
         // console.log('flightId is not exist!');
-      }else{
-        const response = await axiosPublic.get("/flights/"+flightId);
-        
+      } else {
+        const response = await axiosPublic.get("/flights/" + flightId);
+
         const data = response.data;
         // console.log(data);
         dispatch(flightFetchCurrentFlightSuccess(data?.data));

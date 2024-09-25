@@ -3,10 +3,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   flights: [],
   currentFlights: [],
-  dateGlobal: new Date().toISOString().split("T")[0],
+  dateGlobal: "",
   sortGlobal: "",
   directionGlobal: "",
-  pageGlobal: 1,
+  destinationGlobal: "",
+  pageGlobal: null,
   loading: false,
   error: false,
 };
@@ -55,6 +56,12 @@ const flightSlice = createSlice({
     setPageGlobal: (state, { payload }) => {
       state.pageGlobal = payload;
     },
+    setDestinationGlobal: (state, { payload }) => {
+      state.destinationGlobal = payload;
+    },
+    clearDestinationGlobal: (state) => {
+      state.destinationGlobal = "";
+    },
     resetPageGlobal: (state) => {
       state.pageGlobal = 1;
     },
@@ -70,6 +77,7 @@ const flightSlice = createSlice({
       state.dateGlobal = new Date().toISOString().split("T")[0];
       state.sortGlobal = "";
       state.directionGlobal = "";
+      state.destinationGlobal = "";
       state.pageGlobal = 1;
     },
   },
@@ -84,6 +92,8 @@ export const {
   setSortGlobal,
   clearFilters,
   setDirectionGlobal,
+  setDestinationGlobal,
+  clearDestinationGlobal,
   setPageGlobal,
   resetPageGlobal,
   flightCurrentFlightsClearSlice,

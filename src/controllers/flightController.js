@@ -19,6 +19,7 @@ module.exports.flight = {
                 Gets data from schiphol api and returns it!</br></br>
                 <b>Permission= No permission</b></br>   </br> 
                 You can send query with endpoint for date, direction, sort ,page.</br> 
+                    When the route parameter is activated, the page parameter does not work.!</br> 
                     date format: YYYY-MM-DD</br> 
                     direction format: enum -> ['A', 'D'] (Arrival, Department)</br> 
                     sort fields: scheduleDate(flight date), scheduleTime(flight time) </br> 
@@ -29,6 +30,8 @@ module.exports.flight = {
                     <li>URL/?<b>direction=A&page=2</b></li>
                     <li>URL/?<b>date=2024-09-21&sort=+scheduleDate</b></li>
                     <li>URL/?<b>page=2&direction=A</b></li>
+                    <li>URL/?<b>route=CTA</b></li>
+                    <li>URL/?<b>route=CTA,KYA</b></li>
                 </ul>
             `
             #swagger.parameters['page'] = {
@@ -45,6 +48,10 @@ module.exports.flight = {
             #swagger.parameters['date'] = {
                     in: 'query',     
                     description: 'YYYY-MM-DD'                     
+            }
+            #swagger.parameters['route'] = {
+                    in: 'query',     
+                    description: 'CTA (3 letter ICAO code), or multiple values can be accepted: CTA, KYA'                     
             }
             
             
@@ -65,14 +72,21 @@ module.exports.flight = {
         */
 
     //destruct the query params
-    const { date, direction, sort, page } = req.query;
+    const { date, direction, sort, page, route } = req.query;
 
     //create a params obj for the request
     const params = {};
-    params.page = page;
+    if (page) params.page = page;
     if (date) params.scheduleDate = date;
     if (sort) params.sort = sort;
     if (direction) params.flightDirection = direction;
+    if (route){
+      params.route = route;
+      delete params.page;
+      
+      
+    } 
+    console.log('params', params)
 
     //make the request to Schiphol API
     const response = await axios.get(process.env.SCHIPHOL_URL + "/flights", {
@@ -86,9 +100,11 @@ module.exports.flight = {
       params,
     });
 
+
     //check if no flights found
     if (response.data.length === 0) {
       res.sendStatus(204);
+      return;
     }
 
     //the result

@@ -3,6 +3,7 @@ import { GrNext } from "react-icons/gr";
 import { LuChevronFirst } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import {  
+  clearDestinationGlobal,
   setPageGlobal,
 } from "../../app/features/flightSlice";
 import { useEffect, useState } from "react";
@@ -11,7 +12,7 @@ const Pagination = () => {
 
   
   const dispatch = useDispatch();
-  const {pageGlobal,flights} = useSelector((state) => state.flight);  //get the global page and flights 
+  const {pageGlobal,flights, destinationGlobal} = useSelector((state) => state.flight);  //get the global page and flights 
   const [page, setPage] = useState(pageGlobal); //local state of the pagination page of the home page
 
 
@@ -27,7 +28,18 @@ const Pagination = () => {
     // eslint-disable-next-line 
   }, [pageGlobal]);
 
-  return (
+  return destinationGlobal ? (
+      <div className="flex justify-center items-center flex-col my-5">
+
+        <p className="text-sm sm:text-lg text-gray-500 ml-2">
+          Destination Search: {destinationGlobal}
+        </p>
+        <button className=" btn-primary " onClick={()=> dispatch(clearDestinationGlobal())}>
+          Clear Destination Search
+        </button>
+      </div>
+    ) : 
+    (
     <div>
       <div className="flex items-center justify-center gap-3 mt-10 flex-wrap">
       <button

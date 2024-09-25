@@ -16,11 +16,12 @@ import HiddenFilterButton from "../components/homePage/filters/hiddenFIlters/Hid
 import FilterWrapper from "../components/homePage/filters/FilterWrapper";
 import Drawer from "../components/Drawer";
 import { MdOutlineFilterAlt } from "react-icons/md";
+import BookFlight from "../components/homePage/BookFlight";
 // import { clearFlightSliceLogout } from "../app/features/flightSlice";
 
 const HomePage = () => {
   const { getFlights } = useFlightServices(); //get getFlights from flight custom hook
-  const { dateGlobal, sortGlobal, stopGlobal, directionGlobal, pageGlobal } = useSelector((state) => state.flight); //get the global filter states
+  const { dateGlobal, sortGlobal, stopGlobal, directionGlobal, pageGlobal, destinationGlobal } = useSelector((state) => state.flight); //get the global filter states
   // const dispatch = useDispatch(); 
 
   // get flights request(when home page is on mounted or when the global filters are changed)
@@ -32,7 +33,7 @@ const HomePage = () => {
     //   dispatch(clearFlightSliceLogout());
     // }
     // eslint-disable-next-line
-  }, [dateGlobal, sortGlobal, stopGlobal, directionGlobal, pageGlobal]); 
+  }, [dateGlobal, sortGlobal, stopGlobal, directionGlobal, pageGlobal, destinationGlobal]); 
   
 
   // hidden filter state
@@ -52,9 +53,9 @@ const HomePage = () => {
           {/*  */}
           <div className="flex-1">
             {/* Book Flight */}
-            {/* <BookFlight /> */}
-
-            <Pagination />
+            <BookFlight />
+            
+              <Pagination />
             {/* Flights and filters */}
             <div className="mt-3 grid grid-cols-4 relative">
               {/* flights */}

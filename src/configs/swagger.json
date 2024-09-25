@@ -772,7 +772,7 @@
           "Flights"
         ],
         "summary": "List Flights",
-        "description": "  List all Flights!</br>  Gets data from schiphol api and returns it!</br></br>  <b>Permission= No permission</b></br> </br>   You can send query with endpoint for date, direction, sort ,page.</br>    date format: YYYY-MM-DD</br>    direction format: enum -> ['A', 'D'] (Arrival, Department)</br>    sort fields: scheduleDate(flight date), scheduleTime(flight time) </br>    +field : ascending </br>    -field : descending </br> </br>   <ul> Examples:   <li>URL/?<b>date=2024-09-21&direction=D</b></li>   <li>URL/?<b>direction=A&page=2</b></li>   <li>URL/?<b>date=2024-09-21&sort=+scheduleDate</b></li>   <li>URL/?<b>page=2&direction=A</b></li>  </ul>  ",
+        "description": "  List all Flights!</br>  Gets data from schiphol api and returns it!</br></br>  <b>Permission= No permission</b></br> </br>   You can send query with endpoint for date, direction, sort ,page.</br>    When the route parameter is activated, the page parameter does not work.!</br>    date format: YYYY-MM-DD</br>    direction format: enum -> ['A', 'D'] (Arrival, Department)</br>    sort fields: scheduleDate(flight date), scheduleTime(flight time) </br>    +field : ascending </br>    -field : descending </br> </br>   <ul> Examples:   <li>URL/?<b>date=2024-09-21&direction=D</b></li>   <li>URL/?<b>direction=A&page=2</b></li>   <li>URL/?<b>date=2024-09-21&sort=+scheduleDate</b></li>   <li>URL/?<b>page=2&direction=A</b></li>   <li>URL/?<b>route=CTA</b></li>   <li>URL/?<b>route=CTA,KYA</b></li>  </ul>  ",
         "parameters": [
           {
             "name": "page",
@@ -795,6 +795,12 @@
             "name": "date",
             "in": "query",
             "description": "YYYY-MM-DD",
+            "type": "string"
+          },
+          {
+            "name": "route",
+            "in": "query",
+            "description": "CTA (3 letter ICAO code), or multiple values can be accepted: CTA, KYA",
             "type": "string"
           }
         ],
