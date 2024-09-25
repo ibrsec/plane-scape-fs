@@ -182,19 +182,6 @@ cd plane-scape-fs
 # set the .env file to the root of the project
 # .env-sample is exist on the project
 # .env file fields are also below
-
-# install dependency
-# linux
-npm run setup-production
-# windows
-npm run setup-production-windows
-
-# run
-node index.js
-
-#Land on
-http://localhost:10000 from browser
-
 ```
 
 ```sh
@@ -215,6 +202,23 @@ SCHIPHOL_URL=https://api.schiphol.nl/public-flights
 MAILJET_API_KEY=<mailjet_app_key>
 MAILJET_USER=<mailjet_user> 
 ```
+
+
+```sh
+# install dependency
+# linux
+npm run setup-production
+# windows
+npm run setup-production-windows
+
+# run
+node index.js
+
+#Land on
+http://localhost:10000 # from browser
+
+```
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
