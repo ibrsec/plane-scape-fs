@@ -50,6 +50,12 @@ const document = {
         english: "Antalya",
       },
     },
+    Airline: {
+      iata: "0B",
+      icao: "BLA",
+      nvls: 5191,
+      publicName: "Blue Air",
+    },
     Flight: {
       lastUpdatedAt: "2024-09-20T07:24:45.616Z",
       actualLandingTime: "2024-09-20T07:24:45.616Z",

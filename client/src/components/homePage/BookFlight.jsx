@@ -80,8 +80,8 @@ const BookFlight = () => {
       </div>
 
       {/* submit button */}
-      <div className="flex items-center gap-3 ">
-        <button type="submit" className=" btn-primary">
+      <div className="flex items-center gap-3 flex-wrap">
+        <button type="submit" className=" btn-primary     text-nowrap">
           Show flights
         </button>
         {destinationGlobal && (

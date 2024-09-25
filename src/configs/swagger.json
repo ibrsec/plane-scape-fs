@@ -1754,6 +1754,27 @@
         }
       }
     },
+    "Airline": {
+      "type": "object",
+      "properties": {
+        "iata": {
+          "type": "string",
+          "example": "0B"
+        },
+        "icao": {
+          "type": "string",
+          "example": "BLA"
+        },
+        "nvls": {
+          "type": "number",
+          "example": 5191
+        },
+        "publicName": {
+          "type": "string",
+          "example": "Blue Air"
+        }
+      }
+    },
     "Flight": {
       "type": "object",
       "properties": {

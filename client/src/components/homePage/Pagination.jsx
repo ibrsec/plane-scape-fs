@@ -29,12 +29,12 @@ const Pagination = () => {
   }, [pageGlobal]);
 
   return destinationGlobal ? (
-      <div className="flex justify-center items-center flex-col my-5">
+      <div className="flex justify-center items-center flex-col mt-5 mb-10 gap-1">
 
         <p className="text-sm sm:text-lg text-gray-500 ml-2">
           Destination Search: {destinationGlobal}
         </p>
-        <button className=" btn-primary " onClick={()=> dispatch(clearDestinationGlobal())}>
+        <button className=" btn-primary text-nowrap md:text-md " onClick={()=> dispatch(clearDestinationGlobal())}>
           Clear Destination Search
         </button>
       </div>

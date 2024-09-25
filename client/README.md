@@ -124,22 +124,22 @@
 🚩 All screens have been optimized for responsive design.
 
 ---
-
 <b>FRONTEND:</b> </br>
 
 🎯 React Development: Built an intuitive flight booking interface using React.js to provide a seamless and user-friendly experience for travelers.
 
-🛠 State Management: Utilized Redux Toolkit and Persist to manage flight data, bookings, and user preferences efficiently.
+🛠 State Management: Utilized Redux Toolkit and Persist to manage flight data, destinations, airlines, bookings, and user preferences efficiently.
 
-🚀 React Router: Integrated React Router to allow users to navigate smoothly between flight search, booking, and profile pages.
+🚀 React Router: Integrated React Router to allow users to navigate smoothly between home page, my flights, login and register pages.
 
-🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, cancellations, and status updates.
+🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, deletions, search results.
 
-🔍 Search Functionality: Developed advanced search features enabling users to filter flights by date, destination, airline, and price range.
+🧮 Functional Highlights: Utilized React Toastify, implemented time calculations, password validation, and stored flight class and flight statuses as constants.
 
-📷 Document Upload: Supported the upload of documents like ID cards and passports for a streamlined check-in process.
+🔍 Search Functionality: Developed advanced search features enabling users to filter flights by date, flight direction, destination and airline. 
 
 🎨 UI Design: Designed a clean and responsive user interface using Tailwind CSS, ensuring a consistent experience across devices.
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

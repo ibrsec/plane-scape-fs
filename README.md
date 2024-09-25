@@ -129,11 +129,13 @@
 
 🎯 React Development: Built an intuitive flight booking interface using React.js to provide a seamless and user-friendly experience for travelers.
 
-🛠 State Management: Utilized Redux Toolkit and Persist to manage flight data, bookings, and user preferences efficiently.
+🛠 State Management: Utilized Redux Toolkit and Persist to manage flight data, destinations, airlines, bookings, and user preferences efficiently.
 
 🚀 React Router: Integrated React Router to allow users to navigate smoothly between home page, my flights, login and register pages.
 
-🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, deletions, and status updates.
+🔔 User Notifications: Implemented real-time notifications using React Toastify to keep users informed of flight bookings, deletions, search results.
+
+🧮 Functional Highlights: Utilized React Toastify, implemented time calculations, password validation, and stored flight class and flight statuses as constants.
 
 🔍 Search Functionality: Developed advanced search features enabling users to filter flights by date, flight direction, destination and airline. 
 
@@ -145,7 +147,7 @@
 
 🎯 Express.js Framework: Developed a comprehensive RESTful API using Express.js for secure and efficient flight data management.
 
-🔗 External API Integration: Fetched real-time flight information from external APIs, enabling users to search, book, and list available flights.
+🔗 External API Integration: Fetched real-time flight information from schiphol API, enabling users to search, book, and list available flights.
 
 🔒 Authentication & Authorization: Implemented JWT-based authentication for secure user login and session management.
 
@@ -155,9 +157,9 @@
 
 📊 Database Management: Used MongoDB and Mongoose for managing flight bookings, user data, and other related information, ensuring consistent querying and modeling.
 
-🔄 CRUD Operations: Built full CRUD functionality for flights, bookings, and users, allowing for efficient flight booking management and user data handling.
+🔄 CRUD Operations: Built full CRUD functionality for bookings, and users, allowing for efficient flight booking management and user data handling.
 
-🛠 Middleware & Error Handling: Added custom middleware for request validation and global error handling using express-async-errors for consistent error management.
+🛠 Middleware & Error Handling: Added custom middlewares for request validation, permissions, query handling, authentication and global error handling using express-async-errors for consistent error management.
 
 ✉️ Email Notifications: Automatically sent booking confirmation emails to users using Nodemailer after successful flight reservations.
 
