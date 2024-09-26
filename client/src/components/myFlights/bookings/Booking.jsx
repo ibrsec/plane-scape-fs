@@ -86,9 +86,9 @@ const Booking = ({
             </span>
           )}
         </div>
-
+screen-540
         {/* booking details */}
-        <div className=" mb-0 flex flex-col md:flex-row items-center md:items-start  lg:items-center justify-between gap-3">
+        <div className=" mb-0 flex flex-col screen-900:flex-row items-center screen-900:items-start  lg:items-center justify-between gap-3">
           {/* booking card left */}
           <div className=" flex items-start justify-start gap-5 flex-1">
             <div className="flex-shrink-0">
@@ -111,7 +111,10 @@ const Booking = ({
               </div>
               {/* destination */}
               <div className=" text-md md:text-[17px] lg:text-md xl:text-lg flex  items-center gap-1 flex-wrap sm:flex-nowrap text-primary-color">
-                <span className="xs:text-nowrap ">{destination || booking?.destination} </span>
+                <span className="xs:text-nowrap ">
+                <span className="text-[12px] text-gray-400">dest: </span>
+                {destination || booking?.destination} 
+                </span>
               </div>
 
               {/* other infos */}
@@ -119,6 +122,8 @@ const Booking = ({
                 {/* airline info */}
                 <div className="flex flex-col items-start md:flex-1 ">
                   <div className="font-semibold text-sm md:text-md ">
+
+                <span className="text-[12px] text-gray-400">airline: </span>
                     {airline || booking?.airline}({booking?.prefixIATA})
                   </div>
                   {!detailsModal && (
@@ -129,7 +134,7 @@ const Booking = ({
                         setFlightDetailsOpenState(true);
                       }}
                     >
-                      <button className="text-blue-400 group-hover:text-primary-color transition-all text-xs md:text-sm">
+                      <button className="text-blue-400 group-hover:text-primary-color transition-all text-xs md:text-sm text-nowrap">
                         Flight Details
                       </button>
                       <FaChevronDown className="text-blue-400 group-hover:text-primary-color transition-all text-sm" />

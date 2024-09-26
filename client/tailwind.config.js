@@ -11,6 +11,7 @@ module.exports = {
       screens: {
         'xs': '370px',  // new screenbreak point. 
         'screen-540': '540px',   
+        'screen-900': '960px',   
       },
     }, 
   },
