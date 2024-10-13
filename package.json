@@ -6,6 +6,7 @@
     "dev": "node swaggerAutogen.js && nodemon",
     "start": "nodemon ",
     "setup-production": "npm i && cd client && npm i && npm run build && npm run move-linux",
+    "setup-production1": "npm install && cd client && npm install && npm run build",
     "setup-production-windows": "npm i && cd client && npm i && npm run build && npm run move-windows"
   },
   "keywords": [],
